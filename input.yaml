@@ -1,0 +1,67 @@
+compileOption:
+    instSelMethod:
+     # - insttype:
+      #    include: 
+            #- all
+       #     - add 
+        #    - fadd
+         #   - mul
+          #  - fmul
+            #- ret
+            #- call            
+          #exclude:
+           # - ret
+            #- getelementptr
+            #- alloca
+           # - icmp
+            #- fcmp
+            #- phi
+            #- call 
+            #- load           
+      - funcname:
+          include:
+            - CGMethod::add
+            - SparseMatrix::multiply_column
+            #- main
+          #exclude:
+           # - dual_feasible
+            #- main
+    #regSelMethod: customregselector
+compileOption:
+    instSelMethod:
+      - customInstselector:
+          include:
+            - llfiindex
+          options:
+            - -injecttoindex=16396
+            #- -injecttoindex=9708
+    #customRegSelector: DataCorruption(Data)
+
+    regSelMethod: regloc
+    regloc: dstreg
+
+    #includeInjectionTrace: 
+     #   - forward
+      #  - backward
+
+
+
+runOption:
+    - run:
+        numOfRuns: 20
+        fi_type: bitflip
+        #fi_index: 16396
+        #fi_cycle: 24688
+        #fi_reg_index: 0
+        #fi_num_bits: 1
+        #fi_bit: 0
+        verbose: True
+        #fi_num_bits: 1
+
+   # - run:
+    #    numOfRuns: 5
+       # fi_type: stuck_at_0
+
+    #- run:
+     #   numOfRuns: 3
+      #  fi_type: DataCorruption(Data) 
